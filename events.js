@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	$("#boton").click(function(event){
 		event.preventDefault();
-		loginToML();
+		ingresar();
 	})
 });
 function showUserName(name){
