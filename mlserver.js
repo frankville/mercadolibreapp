@@ -92,7 +92,7 @@ app.get("/userinfo", function(req,res){
 
 
 function getUserInfo(callback){
-	mlObj.get("/users/me", function(error,response){
+	mlObj.get("/users/me", {access_token: accessToken}, function(error,response){
 		if(error){
 			console.log("error en getUserInfo! detalle: " +error);
 		}
@@ -105,7 +105,7 @@ function getUserInfo(callback){
 app.get("/auth", function(req,res){
 	mlObj.authorize(req.query.code,redirURI, function(error,response){
 		accessToken = response.access_token;
-		console.log(accessToken);
+
 		//setInterval(retrieveDBObjects,5000);//ejecuta la funcion getUserInfo cada 5 segs
 		res.redirect("https://devcloud.dnsdynamic.com");
 
