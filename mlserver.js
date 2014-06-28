@@ -50,7 +50,13 @@ var options = {
 
 app.use("/",express.static(__dirname));
 app.get("/", function(req, res){
-
+	getUserInfo(function(error, response){
+		if(!error){
+			res.send("User Connected and online!");
+		}else{
+			res.send("User is not connected! please try to login");
+		}
+	});
 });
 
 function retrieveDBObjects(){
