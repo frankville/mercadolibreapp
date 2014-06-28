@@ -96,7 +96,7 @@ function getUserInfo(callback){
 		if(error){
 			console.log("error en getUserInfo! detalle: " +error);
 		}
-		consol.log(response);
+		console.log(response);
 		callback(error, response.last_name+", "+response.first_name);
 	});
 }
