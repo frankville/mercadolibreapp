@@ -26,8 +26,9 @@ db.connect(function(err){
 
 function getArticles(){
 //obtiene todo los articulos de la empresa 002
-db.query("SELECT codigoarticulo, descripcion, inventario,"+
- "activo, preciopublico, talla, color, modelo , marca FROM fashion.articulos where codigoempresa = 2; ", function(err, result){
+db.query("SELECT codigoarticulo, imagen1, descripcion, existencia, preciopublico  FROM articulos where "+
+	"codigoempresa = 2 and activo= 1 "+
+ " and descripcion not like 'PRUEBA'", function(err, result){
  	if(!err){
  		//console.log(result);
  		https.get("/listarticles",{list: result}, function(respdata){
@@ -57,7 +58,8 @@ function retrieveDBObjects(){
 	getArticles();
 }
 
-app.get("/listarticles", function(req,res){
+app.get("/categories", function(req,res){
+	meli.get("/sites/MLA")
 	//res.send(req.params.list);
 });
 
