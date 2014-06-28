@@ -59,7 +59,13 @@ function retrieveDBObjects(){
 }
 
 app.get("/categories", function(req,res){
-	meli.get("/sites/MLA")
+	mlObj.get("/sites/MLA", function(error,result){
+		if(!error){
+			res.send(result);
+		}else{
+			console.log("Error en la consulta categories")
+		}
+	})
 	//res.send(req.params.list);
 });
 
