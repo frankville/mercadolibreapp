@@ -107,7 +107,7 @@ app.get("/auth", function(req,res){
 		accessToken = response.access_token;
 		console.log(accessToken);
 		//setInterval(retrieveDBObjects,5000);//ejecuta la funcion getUserInfo cada 5 segs
-		//res.redirect("https://devcloud.dnsdynamic.com");
+		res.redirect("https://devcloud.dnsdynamic.com");
 
 	});
 
