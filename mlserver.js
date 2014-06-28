@@ -124,7 +124,7 @@ app.get("/ingresar", function(req,res){
 
 	var red = mlObj.getAuthURL(redirURI);
 
-	res.redirect(red);	
+	res.send(red);	//tiene que redireccionar desde el cliente porque sino da un error de CORS (cross-origin)
 
 });
 	
