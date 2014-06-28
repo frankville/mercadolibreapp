@@ -50,11 +50,14 @@ var options = {
 
 app.use("/",express.static(__dirname));
 app.get("/", function(req, res){
+	
+});
+app.get("/status", function(req,res){
 	getUserInfo(function(error, response){
 		if(!error){
-			res.send("User Connected and online!");
+			res.send(response);
 		}else{
-			res.send("User is not connected! please try to login");
+			res.send(null);
 		}
 	});
 });
@@ -76,8 +79,12 @@ app.get("/categories", function(req,res){
 });
 
 app.get("/userinfo", function(req,res){
-	getUserInfo(function(uname){
-		res.send(uname);
+	getUserInfo(function(error,uname){
+		if(!error){
+			res.send(uname);
+		}else{
+			res.send(error);
+		}
 	});
 
 
@@ -85,18 +92,21 @@ app.get("/userinfo", function(req,res){
 
 
 function getUserInfo(callback){
-	mlObj.get("/users/me",{access_token: accessToken}, function(error,response){
-		console.log("error!" +error);
-		callback(response.last_name+", "+response.first_name);
+	mlObj.get("/users/me", function(error,response){
+		if(error){
+			console.log("error en getUserInfo! detalle: " +error);
+		}
+		callback(error, response.last_name+", "+response.first_name);
 	});
 }
 
 
 app.get("/auth", function(req,res){
 	mlObj.authorize(req.query.code,redirURI, function(error,response){
-		accessToken = response.access_token;
+		//accessToken = response.access_token;
 		//setInterval(retrieveDBObjects,5000);//ejecuta la funcion getUserInfo cada 5 segs
 		res.redirect("https://devcloud.dnsdynamic.com");
+
 	});
 
 });
@@ -112,9 +122,9 @@ app.get("/ingresar", function(req,res){
 
 	var red = mlObj.getAuthURL(redirURI);
 
-	res.send(red);	
+	res.redirect(red);	
 
-	});
+});
 	
 
 

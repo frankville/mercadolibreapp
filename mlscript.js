@@ -1,17 +1,18 @@
 $(document).ready(function()
 {
-
+	$.get("/status", function(resp){
+		if(resp){
+			showStatusPanel("En linea! con nombre de usuario: "+resp);
+		}else{
+			showLoginPanel();
+		}
+	});
 
 });
 
 function ingresar(){
 
 $.get("/ingresar", function(data){
-	console.log(data);
-	window.location.href = data;
-	$.get("/userinfo", function(resp){
-		console.log("user: "+resp);
-	});
 
 });
 };
