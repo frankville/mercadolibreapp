@@ -92,7 +92,7 @@ app.get("/userinfo", function(req,res){
 
 
 function getUserInfo(callback){
-	mlObj.get("/users/me", {access_token: accessToken }, function(error,response){
+	mlObj.get("/users/me", function(error,response){
 		if(error){
 			console.log("error en getUserInfo! detalle: " +error);
 		}
@@ -124,7 +124,7 @@ app.get("/ingresar", function(req,res){
 
 	var red = mlObj.getAuthURL(redirURI);
 
-	res.send(red);	
+	res.redirect(red);	
 
 });
 	
