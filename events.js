@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	showLoginPanel();
 	$("#boton").click(function(event){
 		event.preventDefault();
 		ingresar();
