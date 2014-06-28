@@ -1,5 +1,6 @@
 $(document).ready(function()
 {
+		/*
 	$.get("/status", function(resp){
 		if(resp){
 			showStatusPanel("En linea! con nombre de usuario: "+resp);
@@ -7,6 +8,7 @@ $(document).ready(function()
 			showLoginPanel();
 		}
 	});
+*/
 
 });
 
